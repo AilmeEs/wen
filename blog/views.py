@@ -3,8 +3,8 @@ from .models import Post
 from .forms import PostForm
 # Create your views here.
 def index(request):
-    postes = Post.objects.all()
-    return render(request, '../../../../../xue/binbin-1-master/Training/templates/index.html', {'postes': postes})
+    posts=Post.objects.all()
+    return render(request,'index.html',{'posts':posts})
 def edit(request,id):
     po=get_object_or_404(Post,id=id)
     if request.method=="POST":
@@ -15,3 +15,8 @@ def edit(request,id):
     else:
         po_forms=PostForm(instance=po)
     return render(request,'edit.html',{'po':po,'po_forms':po_forms})
+
+def delete_(request,id):
+    post=Post.objects.get(id=id)
+    post.delete()
+    return request('/')

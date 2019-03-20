@@ -5,6 +5,11 @@
     <title>主页</title>
 </head>
 <body>
+
 <a href="{% url 'post_edit' %}"></a>
+{% for post in posts %}
+    <p>{{ post.publish }}</p>
+    <p><a href="{% url 'delete_' post.id %}">删除文章</a></p>
+{% endfor %}
 </body>
 </html>
